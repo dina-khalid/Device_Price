@@ -2,36 +2,28 @@ package com.example.demo.device;
 
 import org.springframework.stereotype.Component;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Component // or @Service
+@Component 
 public class DeviceService {
 
+    private final DeviceRepository deviceRepository;
+
+    @Autowired
+    public DeviceService(DeviceRepository deviceRepository) {
+        this.deviceRepository = deviceRepository;
+    }
+
+
     public List<Device> getDevices() {
-        return List.of(
-            new Device(
-                1, 
-                2000,
-                1,
-                1,
-                0, 
-                1,
-                1.0f,
-                16.0f,
-                0, 
-                200.0f,
-                4.0f,
-                2.0f,
-                800.0f,
-                800.0f,
-                2.0f,
-                12.0f,
-                7.0f,
-                19,
-                0,
-                0,
-                1,
-                1
-            )
-        );
+        return deviceRepository.findAll();
+    }
+
+    public void addNewDevice(Device device) {
+        deviceRepository.save(device);
+    }
+
+    public Device getDeviceById(int id) {
+        return deviceRepository.findById(id).orElseThrow(() -> new IllegalStateException("Device with id " + id + " not found"));
     }
 }

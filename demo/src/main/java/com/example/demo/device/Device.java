@@ -1,9 +1,28 @@
-// create device class
 package com.example.demo.device;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Entity;
 
+
+
+
+@Entity
+@Table(name = "device")
 public class Device {
-
-    private int id;
+    @Id
+    @SequenceGenerator(
+            name = "device_sequence",
+            sequenceName = "device_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "device_sequence"
+    )
+    private int id; 
     private int battery_power;
     private int blue;
     private float clock_speed;
