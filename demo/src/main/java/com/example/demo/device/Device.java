@@ -6,9 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
 
-
-
-
 @Entity
 @Table(name = "device")
 public class Device {
@@ -126,6 +123,14 @@ public class Device {
 
     public int getDual_sim() {
         return dual_sim;
+    }
+
+    public int getPrice_range() {
+        return price_range;
+    }
+
+    public void setPrice_range(int price_range) {
+        this.price_range = price_range;
     }
 
 }
